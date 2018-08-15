@@ -1,0 +1,32 @@
+<div *ngIf="donationsData.length!=0; else showMessage">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Date of Donation</th>
+        <th scope="col">Donation Amount</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let d of donationsData">
+        <th scope="row">{{ d.id }}</th>
+        <td>{{ d.firstname }} {{ d.middlename }} {{ d.lastname }}</td>
+        <td>{{ d.address }}</td>
+        <td>{{ d.phone }}</td>
+        <td>{{ d.gender }}</td>
+        <td>{{ d.date }}</td>
+        <td>{{ d.amount }}</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<ng-template #showMessage>
+    <div class="alert alert-info" role="alert">
+        There is no donation data to show.
+    </div>
+</ng-template>

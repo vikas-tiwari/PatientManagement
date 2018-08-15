@@ -1,0 +1,13 @@
+.form-align {
+    padding-left: 20rem;
+    align-content: center;
+    padding-right: 13rem;
+}
+.form {
+    padding-top: 1rem;
+    padding-right: 10rem;
+}
+
+.boxed {
+    border: 1px solid green ;
+  }

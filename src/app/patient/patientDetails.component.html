@@ -1,0 +1,32 @@
+<div *ngIf="patients.length!=0; else showMessage">
+<table class="table table-bordered">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">#</th>
+        <th scope="col">Name</th>
+        <th scope="col">Address</th>
+        <th scope="col">Phone Number</th>
+        <th scope="col">Gender</th>
+        <th scope="col">Date of Birth</th>
+        <th scope="col">Disease</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let Person of patients">
+        <th scope="row">{{ Person.id }}</th>
+        <td>{{ Person.fname }} {{ Person.mname }} {{ Person.lname }}</td>
+        <td>{{ Person.address }}</td>
+        <td>{{ Person.phone }}</td>
+        <td>{{ Person.gender }}</td>
+        <td>{{ Person.date }}</td>
+        <td>{{ Person.disease }}</td>
+      </tr>
+    </tbody>
+</table>
+</div>
+
+<ng-template #showMessage>
+    <div class="alert alert-info" role="alert">
+        There is no patient data to show.
+    </div>
+</ng-template>
