@@ -13,6 +13,7 @@ import { DonationComponent } from './donation/donation.home.component';
 import { PatientDataComponent } from './patient/patientDetails.component';
 import { PatientService } from './Patient.service';
 import { DonationDataComponent } from './donation/donationDetails.component';
+import { HttpModule } from '@angular/http';
 
 
 const appRoutes: Routes = [
@@ -37,7 +38,9 @@ const appRoutes: Routes = [
     HttpClientModule,
     FormsModule,
     MatTableModule,
-    MyDatePickerModule
+    MyDatePickerModule,
+    HttpModule,
+    FormsModule
   ],
   providers: [PatientService],
   bootstrap: [AppComponent]

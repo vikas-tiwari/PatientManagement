@@ -5,6 +5,9 @@ var bodyParser = require('body-parser');
 var mysql= require('mysql');
 app.use(compression());
 
+var distDir = __dirname + "/dist/";
+app.use(express.static(distDir));
+
 var con = mysql.createConnection({
     host: "db4free.net",
     database: "clouddb",
