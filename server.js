@@ -81,6 +81,6 @@ app.post('/insertDonation', function (req, res) {
     );
   });
 
-var server= app.listen(3000,function(){
+var server= app.listen(process.env.PORT || 5000,function(){
     console.log("express server started");
 });
