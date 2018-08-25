@@ -7,7 +7,7 @@ const path = require('path');
 
 app.use(compression());
 
-var distDir = __dirname + "/dist";
+var distDir = __dirname + "/dist/patient-management";
 app.use(express.static(distDir));
 
 app.get('/*', function(req, res) {
