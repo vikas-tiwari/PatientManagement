@@ -8,6 +8,11 @@ app.use(compression());
 var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dist/index.html'));
+  });
+
+
 var con = mysql.createConnection({
     host: "db4free.net",
     database: "clouddb",
@@ -15,7 +20,7 @@ var con = mysql.createConnection({
     password: "admin123",
     port:3306
   });
-  
+
   con.connect(function(err) {
     if (err) throw err;
     console.log("Database Connected!");
@@ -82,9 +87,6 @@ app.post('/insertDonation', function (req, res) {
   });
 
 var server= app.listen(process.env.PORT || 5000,function(){
-    console.log("express server started"+process.env.PORT);
+    console.log("express server started");
 });
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/index.html'));
-  });
