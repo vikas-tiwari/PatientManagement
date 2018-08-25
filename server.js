@@ -3,9 +3,11 @@ var compression = require('compression');
 var app = express();
 var bodyParser = require('body-parser');
 var mysql= require('mysql');
+const path = require('path');
+
 app.use(compression());
 
-var distDir = __dirname + "/dist/";
+var distDir = __dirname + "/dist";
 app.use(express.static(distDir));
 
 app.get('/*', function(req, res) {
