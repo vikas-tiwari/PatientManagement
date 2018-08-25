@@ -15,7 +15,7 @@ export class DonationComponent {
   model: any;
   errorMsg: any;
   submitted: boolean=false;
-  private selDate: IMyDate = {year: 0, month: 0, day: 0}
+  selDate: IMyDate = {year: 0, month: 0, day: 0}
 
   constructor(private service: PatientService , private router: Router) {
     this.model=  new DonationInput();

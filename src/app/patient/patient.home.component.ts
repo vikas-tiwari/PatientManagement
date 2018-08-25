@@ -17,7 +17,7 @@ export class HomeComponent {
 
   model:any;
   errorMsg:any;
-  private selDate: IMyDate = {year: 0, month: 0, day: 0}
+  selDate: IMyDate = {year: 0, month: 0, day: 0}
     
   constructor(private service: PatientService, private router: Router) {
     this.model= new Patient();
