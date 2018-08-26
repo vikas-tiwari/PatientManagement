@@ -9,7 +9,7 @@ export class  PatientService {
     url: String;
     
     constructor(private http: HttpClient) {
-        this.url='http://localhost:3000';
+        this.url='';
     }
 
     getAllPatients() {
