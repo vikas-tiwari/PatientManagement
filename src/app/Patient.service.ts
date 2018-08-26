@@ -14,6 +14,7 @@ export class  PatientService {
 
     getAllPatients() {
         let url= this.url+"/getPatients";
+        console.log(url);
         return this
             .http
             .get(url)
