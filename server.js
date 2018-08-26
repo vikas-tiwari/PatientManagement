@@ -6,7 +6,17 @@ var mysql= require('mysql');
 const path = require('path');
 
 app.use(compression());
-
+const forceSSL = function() { 
+    return function(req, res, next) {
+        if (req.headers['x-forwarded-proto'] !== 'https') {
+            return res.redirect(
+                ['https://', req.get('Host'), req.url].join('')
+            );
+        }
+        next();
+    }
+};
+app.use(forceSSL());
 var distDir = __dirname + "/dist/patient-management";
 app.use(express.static(distDir));
 
@@ -89,6 +99,6 @@ app.post('/insertDonation', function (req, res) {
   });
 
 var server= app.listen(process.env.PORT || 5000,function(){
-    console.log("express server started");
+    console.log('express server started:');
 });
 
