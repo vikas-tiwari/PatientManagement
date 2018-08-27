@@ -7,12 +7,12 @@ const path = require('path');
 
 app.use(compression());
 
-var distDir = __dirname + "/dist/";
+var distDir = __dirname + "/dist/patient-management";
 app.use(express.static(distDir));
 
-// app.get('/*', function(req, res) {
-//     res.sendFile(path.join(__dirname + '/dist/patient-management/index.html'));
-//   });
+app.get('/*', function(req, res) {
+    res.sendFile(path.join(__dirname + '/dist/patient-management/index.html'));
+  });
 
 
 var server = app.listen(process.env.PORT || 5000, function () {
