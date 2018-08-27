@@ -9,15 +9,14 @@ export class  PatientService {
     url: String;
     
     constructor(private http: HttpClient) {
-        this.url='';
+        // this.url='';
     }
 
     getAllPatients() {
-        let url= this.url+"/getPatients";
-        console.log(url);
+        let url= this.url+"/getAllPatients";
         return this
             .http
-            .get(url)
+            .get("/getAllPatients")
             .pipe(map((res : any )=> {
               return res;
             }));

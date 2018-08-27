@@ -1,22 +1,13 @@
 var express = require('express');
 var compression = require('compression');
 var app = express();
+const http = require('http')
 var bodyParser = require('body-parser');
 var mysql= require('mysql');
 const path = require('path');
 
 app.use(compression());
-const forceSSL = function() { 
-    return function(req, res, next) {
-        if (req.headers['x-forwarded-proto'] !== 'https') {
-            return res.redirect(
-                ['https://', req.get('Host'), req.url].join('')
-            );
-        }
-        next();
-    }
-};
-app.use(forceSSL());
+
 var distDir = __dirname + "/dist/patient-management";
 app.use(express.static(distDir));
 
@@ -36,11 +27,6 @@ var con = mysql.createConnection({
   con.connect(function(err) {
     if (err) throw err;
     console.log("Database Connected!");
-    // var sql = "create table patient_home (id INT AUTO_INCREMENT PRIMARY KEY,name varchar(30), address varchar(100),dob DATE, phone varchar(20), gender char(1),disease varchar(100))";
-    // con.query(sql, function (err, result) {
-    // if (err) throw err;
-    // console.log("Table Created");
-    //  });
   });
 
 app.use(bodyParser.json());
@@ -52,7 +38,7 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.get('/getPatients',function(req,res,next) {
+app.get('/getAllPatients',function(req,res,next) {
     var sql = "select *,DATE_FORMAT(dob,'%d %M %Y') AS date from patient_home";
     con.query(sql, function (err, result) {
     if (err) {
@@ -98,7 +84,9 @@ app.post('/insertDonation', function (req, res) {
     );
   });
 
-var server= app.listen(process.env.PORT || 5000,function(){
-    console.log('express server started:');
-});
+  const port = process.env.PORT || 5000;
+  app.set('port', port);
+  
+  const server = http.createServer(app);
+  server.listen(port, () => console.log('running'));
 
