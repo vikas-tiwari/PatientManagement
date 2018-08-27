@@ -9,14 +9,14 @@ export class  PatientService {
     url: String;
     
     constructor(private http: HttpClient) {
-        // this.url='';
+        this.url='/api/';
     }
 
     getAllPatients() {
         let url= this.url+"/getAllPatients";
         return this
             .http
-            .get("/getAllPatients")
+            .get(url)
             .pipe(map((res : any )=> {
               return res;
             }));
@@ -47,5 +47,11 @@ export class  PatientService {
               return res;
             }));
     }
+
+    private handleError (error: any) {
+        let errMsg = (error.message) ? error.message :
+        error.status ? `${error.status} - ${error.statusText}` : 'Server error';
+        console.error(errMsg); // log to console instead
+      }
 
 }

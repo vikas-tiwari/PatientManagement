@@ -1,18 +1,23 @@
 var express = require('express');
 var compression = require('compression');
 var app = express();
-const http = require('http')
 var bodyParser = require('body-parser');
 var mysql= require('mysql');
 const path = require('path');
 
 app.use(compression());
 
-var distDir = __dirname + "/dist/patient-management";
+var distDir = __dirname + "/dist/";
 app.use(express.static(distDir));
 
-app.get('/*', function(req, res) {
-    res.sendFile(path.join(__dirname + '/dist/patient-management/index.html'));
+// app.get('/*', function(req, res) {
+//     res.sendFile(path.join(__dirname + '/dist/patient-management/index.html'));
+//   });
+
+
+var server = app.listen(process.env.PORT || 5000, function () {
+    var port = server.address().port;
+    console.log("App now running on port", port);
   });
 
 
@@ -38,7 +43,13 @@ app.use(function(req, res, next) {
     next();
   });
 
-app.get('/getAllPatients',function(req,res,next) {
+  // Generic error handler used by all endpoints.
+  function handleError(res, reason, message, code) {
+    console.log("ERROR: " + reason);
+    res.status(code || 500).json({"error": message});
+  }  
+
+app.get('/api/getAllPatients',function(req,res,next) {
     var sql = "select *,DATE_FORMAT(dob,'%d %M %Y') AS date from patient_home";
     con.query(sql, function (err, result) {
     if (err) {
@@ -49,7 +60,7 @@ app.get('/getAllPatients',function(req,res,next) {
     });
 });
 
-app.post('/patient', function (req, res, next) {
+app.post('/api/patient', function (req, res, next) {
   con.query('INSERT INTO patient_home SET ?', req.body, 
       function (err, result) {
           if (err) {
@@ -61,7 +72,7 @@ app.post('/patient', function (req, res, next) {
   );
 });
 
-app.get('/getDonations',function(req,res, next) {
+app.get('/api/getDonations',function(req,res, next) {
     var sql = "select *,  DATE_FORMAT(dod,'%d %M %Y') AS date from donations_details";
     con.query(sql, function (err, result) {
         if (err) {
@@ -72,7 +83,7 @@ app.get('/getDonations',function(req,res, next) {
     });
 });
 
-app.post('/insertDonation', function (req, res) {
+app.post('/api/insertDonation', function (req, res) {
     con.query('INSERT INTO donations_details SET ?', req.body, 
         function (err, result) {
             if (err) {
@@ -83,10 +94,3 @@ app.post('/insertDonation', function (req, res) {
         }
     );
   });
-
-  const port = process.env.PORT || 5000;
-  app.set('port', port);
-  
-  const server = http.createServer(app);
-  server.listen(port, () => console.log('running'));
-
