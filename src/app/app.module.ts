@@ -34,7 +34,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    RouterModule.forRoot(appRoutes, {enableTracing: false,useHash: true}),
     HttpClientModule,
     FormsModule,
     MatTableModule,
@@ -42,6 +42,7 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule
   ],
+  exports: [RouterModule],
   providers: [PatientService],
   bootstrap: [AppComponent]
 })
