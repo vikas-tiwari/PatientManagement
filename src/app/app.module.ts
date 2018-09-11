@@ -21,9 +21,7 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'getPatients', component: PatientDataComponent },
   { path: 'donation', component: DonationComponent },
-  { path: 'donationDetails', component: DonationDataComponent },
-  { path: '**', component: '' }
-
+  { path: 'donationDetails', component: DonationDataComponent }
 ]
 
 @NgModule({
