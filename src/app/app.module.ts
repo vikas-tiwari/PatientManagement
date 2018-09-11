@@ -21,7 +21,9 @@ const appRoutes: Routes = [
   { path: 'home', component: HomeComponent },
   { path: 'getPatients', component: PatientDataComponent },
   { path: 'donation', component: DonationComponent },
-  { path: 'donationDetails', component: DonationDataComponent }
+  { path: 'donationDetails', component: DonationDataComponent },
+  { path: '**', component: '' }
+
 ]
 
 @NgModule({
@@ -34,7 +36,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {enableTracing: false,useHash: true}),
+    RouterModule.forRoot(appRoutes, {useHash: true}),
     HttpClientModule,
     FormsModule,
     MatTableModule,
