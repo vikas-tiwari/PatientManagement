@@ -9,7 +9,7 @@ export class  PatientService {
     url: String;
     
     constructor(private http: HttpClient) {
-        this.url='/api/';
+        this.url='/api';
     }
 
     getAllPatients() {
