@@ -17,7 +17,7 @@ import { HttpModule } from '@angular/http';
 
 
 const appRoutes: Routes = [
-  { path: '', redirectTo:'home',pathMatch:'full' },
+  // { path: '', redirectTo:'home',pathMatch:'full' },
   { path: 'home', component: HomeComponent },
   { path: 'getPatients', component: PatientDataComponent },
   { path: 'donation', component: DonationComponent },
