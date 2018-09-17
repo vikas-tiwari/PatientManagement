@@ -4,6 +4,7 @@ import { PatientService } from '../Patient.service';
 
 
 @Component({
+  selector:'patient-home',
   templateUrl: './patientDetails.component.html',
   styleUrls: ['./patient.home.css']
 })

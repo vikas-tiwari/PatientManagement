@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import {IMyDpOptions, IMyDateModel, IMyDate} from 'mydatepicker';
-import { Router } from '@angular/router';
+import { Router, RouterModule } from '@angular/router';
 
 import { PatientService } from '../Patient.service';
 import { HttpClient } from '@angular/common/http';

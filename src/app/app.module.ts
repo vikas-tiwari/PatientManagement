@@ -15,14 +15,8 @@ import { PatientService } from './Patient.service';
 import { DonationDataComponent } from './donation/donationDetails.component';
 import { HttpModule } from '@angular/http';
 
+import { AppRoutingModule } from '../app-routing.module';
 
-const appRoutes: Routes = [
-  // { path: '', redirectTo:'home',pathMatch:'full' },
-  { path: 'home', component: HomeComponent },
-  { path: 'getPatients', component: PatientDataComponent },
-  { path: 'donation', component: DonationComponent },
-  { path: 'donationDetails', component: DonationDataComponent }
-]
 
 @NgModule({
   declarations: [
@@ -34,7 +28,7 @@ const appRoutes: Routes = [
   ],
   imports: [
     BrowserModule,
-    RouterModule.forRoot(appRoutes, {useHash: true}),
+    AppRoutingModule,
     HttpClientModule,
     FormsModule,
     MatTableModule,
@@ -42,7 +36,6 @@ const appRoutes: Routes = [
     HttpModule,
     FormsModule
   ],
-  exports: [RouterModule],
   providers: [PatientService],
   bootstrap: [AppComponent]
 })
