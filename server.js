@@ -12,7 +12,7 @@ app.use(express.static(distDir));
 
 app.get('/*', function(req, res) {
     res.sendFile(path.join(__dirname + '/dist/patient-management/index.html'));
-  });
+});
 
 var server = app.listen(process.env.PORT || 5000, function () {
     var port = server.address().port;
